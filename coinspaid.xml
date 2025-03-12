@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension version="1.0" type="plugin" method="upgrade" group="vmpayment">
+    <name>VM Payment - coinspaid</name>
+    <creationDate>March 11 2025</creationDate>
+    <author>Coinspaid</author>
+    <authorUrl>https://coinspaid.com/</authorUrl>
+    <copyright>Copyright (C) 2024 Coinspaid. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <version>1.0.0</version>
+    <description>Coinspaid payment plugin</description>
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.plg_vmpayment_coinspaid.ini</language>
+    </languages>
+    <files>
+        <filename plugin="coinspaid">coinspaid.php</filename>
+        <filename>autoload.php</filename>
+        <filename>coinspaid.png</filename>
+        <folder>coinspaid</folder>
+        <folder>language</folder>
+        <folder>lib</folder>
+    </files>
+    <vmconfig>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/administrator/components/com_virtuemart/fields">
+
+                <field type="vmfiles" name="payment_logos" label="VMPAYMENT_STANDARD_LOGOS"
+                       description="VMPAYMENT_STANDARD_LOGOS_DESC" directory="/plugins/vmpayment/coinspaid"
+                       default="coinspaid.png" hide_default="1" hide_none="1" stripext="0"
+                       exclude=".*\.(php|html|xml|wsdl)"/>
+
+                <field type="vmtitle" default="VMPAYMENT_COINSPAID_PARAMS"/>
+
+                <field name="secret_key" type="password" size="50" default=""
+                       label="VMPAYMENT_COINSPAID_SECRET_KEY"
+                       description="VMPAYMENT_COINSPAID_SECRET_KEY_DESC"/>
+                <field name="public_key" type="password" size="50" default=""
+                       label="VMPAYMENT_COINSPAID_PUBLIC_KEY"
+                       description="VMPAYMENT_COINSPAID_PUBLIC_KEY_DESC"/>
+
+                <field type="vmtitle" default="VMPAYMENT_COINSPAID_SANDBOX_PARAMS"/>
+                <field name="sandbox" type="radio" default="0" label="VMPAYMENT_COINSPAID_USE_SANDBOX"
+                       description="VMPAYMENT_COINSPAID_USE_SANDBOX_DESC">
+                    <option value="0">COM_VIRTUEMART_NO</option>
+                    <option value="1">COM_VIRTUEMART_YES</option>
+                </field>
+
+                <field name="sandbox_secret_key" type="password" size="50"
+                       label="VMPAYMENT_COINSPAID_SANDBOX_SECRET_KEY"
+                       description="VMPAYMENT_COINSPAID_SANDBOX_SECRET_KEY_DESC"/>
+                <field name="sandbox_public_key" type="password" size="50"
+                       label="VMPAYMENT_COINSPAID_SANDBOX_PUBLIC_KEY"
+                       description="VMPAYMENT_COINSPAID_SANDBOX_PUBLIC_KEY_DESC"/>
+
+                <field type="vmtitle" default="VMPAYMENT_COINSPAID_ORDER_STATUS_SECTION"
+                       description=""/>
+                <field name="status_pending" type="vmorderstate" scope="com_virtuemart" default="U"
+                       label="VMPAYMENT_COINSPAID_STATUS_PENDING" description="VMPAYMENT_COINSPAID_STATUS_PENDING_TIP"/>
+                <field name="status_success" type="vmorderstate" scope="com_virtuemart" default="C"
+                       label="VMPAYMENT_COINSPAID_STATUS_SUCCESS" description="VMPAYMENT_COINSPAID_STATUS_SUCCESS_TIP"/>
+                <field name="status_canceled" type="vmorderstate" scope="com_virtuemart" default="X"
+                       label="VMPAYMENT_COINSPAID_STATUS_FAILED" description="VMPAYMENT_COINSPAID_STATUS_FAILED_TIP"/>
+
+                <field name="time_restriction" type="radio" default="0" label="VMPAYMENT_COINSPAID_TIME_RESTRICTION"
+                       description="VMPAYMENT_COINSPAID_TIME_RESTRICTION_DESC">
+                    <option value="0">COM_VIRTUEMART_NO</option>
+                    <option value="1">COM_VIRTUEMART_YES</option>
+                </field>
+
+                <field name="enable_debug" type="radio" default="0" label="VMPAYMENT_COINSPAID_ENABLE_DEBUG"
+                       description="VMPAYMENT_COINSPAID_ENABLE_DEBUG_DESC">
+                    <option value="0">COM_VIRTUEMART_NO</option>
+                    <option value="1">COM_VIRTUEMART_YES</option>
+                </field>
+            </fieldset>
+
+        </fields>
+    </vmconfig>
+    <updateservers>
+        <!-- Note: No spaces or linebreaks allowed between the server tags -->
+        <server type="extension" name="VirtueMart plg_vmpayment_coinspaid Update Site">
+            <![CDATA[http://virtuemart.net/releases/vm3/plg_vmpayment_coinspaid_update.xml]]></server>
+    </updateservers>
+</extension>
